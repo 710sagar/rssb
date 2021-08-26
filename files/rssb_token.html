@@ -120,6 +120,12 @@
         var i=0;
         var table = document.createElement('table');
         table.className='mymaintable';
+        if(vaccine_name != 'COVISHIELD'){
+            table.style.fontSize = '20px';
+        }
+        else{
+            table.style.fontSize = '30px';
+        }
         for (var int = start;int<=end;){
             tr = document.createElement('tr');
             for (var j=0; j<5; j++){
@@ -161,7 +167,7 @@
             table.appendChild(tr);
             i++;
             document.body.appendChild(table);
-            if(i == 7 && vaccine_name != 'COVISHIELD'){
+            if(i == 7){
                 
                 var p = document.createElement('p');
                 p.style.pageBreakAfter = "always";
@@ -170,15 +176,12 @@
                 i = 0;
                 var table = document.createElement('table');
                 table.className='mymaintable';
-            }
-            else if(i == 7 && vaccine_name == 'COVISHIELD'){
-                var p = document.createElement('p');
-                p.style.pageBreakAfter = "always";
-                //divRow.appendChild(p);
-                document.body.appendChild(p);
-                i = 0;
-                var table = document.createElement('table');
-                table.className='mymaintable';
+                if(vaccine_name != 'COVISHIELD'){
+                    table.style.fontSize = '20px';
+                }
+                else{
+                    table.style.fontSize = '30px';
+                }
             }
             
         }
