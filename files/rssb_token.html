@@ -1,0 +1,193 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../assets/bootstrap-3-3-4/dist/css/bootstrap.min.css?v=41" type="text/css">
+        <link rel="stylesheet" href="../assets/select2-4-0/dist/css/select2.css?v=41" type="text/css">
+        <link rel="stylesheet" href="../assets/select2-bootstrap-theme-0-1-0/dist/select2-bootstrap.css?v=41" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script language="javascript" type="text/javascript" src="ajax.js"></script>
+    
+        <style>
+            table{
+                background-color:none !important;
+            }
+            table, th,tr, td {
+                border: 1px solid black !important;
+                height: fit-content !important;
+                /* width: auto !important; */
+            }
+            .mymaintable{
+                /* if date or vaccine name required font size 34 */
+                /* font-size: 34px; */
+
+                /*if date not required then font size 40*/
+                /* font-size: 40px; */
+
+                /* if date and vaccine name required font size 30 */
+                font-size: 30px;
+
+                border-spacing: 20px !important;
+                border-collapse: separate !important; 
+                text-align: center !important;
+                font-family:Times New Roman !important;
+                font-weight: bold !important; 
+                width: 99% !important;
+                margin-left: 1% !important;
+                margin-right: 1% !important;
+                margin-top: 1% !important;
+            }
+            .centerAlign{
+                text-align: center !important;
+            }
+            @media print {
+                #printPageButton, #backForm {
+                    display: none;
+                }
+            }
+            #backForm{
+                text-align: center;
+                margin: 5%;
+            }
+            .myDIV{
+                padding: 8px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="../main.html" id = 'backForm'>
+            <input type="submit" value="Back" id='printPageButton' />
+        </form>
+     
+    </body>
+    </html>
+    <script>
+        data = {};
+        var start = '';
+        var end = '';
+        var vaccine_name = '';
+        var todayDate = '';
+        var url = document.location.href;
+        params = url.split('?')[1].split('&');   
+        tmp = {};
+        for (var i = 0, l = params.length; i < l; i++) {
+            tmp = params[i].split('=');
+            data[tmp[0]] = tmp[1];
+        }
+        start += data['startNo'];
+        start = Number(start);
+        end += data['endNo'];
+        end = Number(end);
+        vaccine_name += data['vaccineName'];
+        var date = data['campDate'];
+        todayDate += getTodayDate(date);
+        
+        function getTodayDate(value){
+            var month = new Array();
+            var returnDate = '';
+            month[0] = "Jan";
+            month[1] = "Feb";
+            month[2] = "Mar";
+            month[3] = "Apr";
+            month[4] = "May";
+            month[5] = "Jun";
+            month[6] = "Jul";
+            month[7] = "Aug";
+            month[8] = "Sep";
+            month[9] = "Oct";
+            month[10] = "Nov";
+            month[11] = "Dec";
+            var today = value;
+            var dateArray = today.split('-');
+            var dd = dateArray[2];
+            var mm = month[dateArray[1]-1];
+            var yyyy = dateArray[0];
+            yyyy = yyyy.toString().substr(2,3);
+            returnDate+= dd + ' ' + mm + ' ' + yyyy;
+            return returnDate;
+        }
+        
+        function pad(num, size) {
+            num = num.toString();
+            while (num.length < size) num = "0" + num;
+            return num;
+        }
+        
+        let text = "";
+        var i=0;
+        var table = document.createElement('table');
+        table.className='mymaintable';
+        for (var int = start;int<=end;){
+            tr = document.createElement('tr');
+            for (var j=0; j<5; j++){
+                var int = pad(int,3);
+                td = document.createElement('td');
+                var divRow = document.createElement('div');
+                divRow.className = "myDIV";
+                span = document.createElement('span');
+                span.innerHTML = "RSSB";
+                divRow.appendChild(span);
+                var newElem = document.createElement("BR");
+                divRow.appendChild(newElem);
+                span = document.createElement('span');
+                span.innerHTML = "KPT-II";
+                divRow.appendChild(span);
+                var newElem = document.createElement("BR");
+                divRow.appendChild(newElem);
+                span = document.createElement('span');
+                span.innerHTML = int;
+                divRow.appendChild(span);
+                var newElem = document.createElement("BR");
+                divRow.appendChild(newElem);
+                span = document.createElement('span');
+                span.innerHTML = vaccine_name;
+                divRow.appendChild(span);
+                var newElem = document.createElement("BR");
+                divRow.appendChild(newElem);
+                span = document.createElement('span');
+                span.innerHTML = todayDate;
+                divRow.appendChild(span);
+
+                td.appendChild(divRow)
+
+                tr.appendChild(td);
+                int++;
+            
+            
+            }   
+            table.appendChild(tr);
+            i++;
+            document.body.appendChild(table);
+            if(i == 7 && vaccine_name != 'COVISHIELD'){
+                
+                var p = document.createElement('p');
+                p.style.pageBreakAfter = "always";
+                //divRow.appendChild(p);
+                document.body.appendChild(p);
+                i = 0;
+                var table = document.createElement('table');
+                table.className='mymaintable';
+            }
+            else if(i == 7 && vaccine_name == 'COVISHIELD'){
+                var p = document.createElement('p');
+                p.style.pageBreakAfter = "always";
+                //divRow.appendChild(p);
+                document.body.appendChild(p);
+                i = 0;
+                var table = document.createElement('table');
+                table.className='mymaintable';
+            }
+            
+        }
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            window.print();
+            setTimeout(function(){
+                window.close();
+            }, 0);
+        }
+    </script> 

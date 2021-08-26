@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script language="javascript" type="text/javascript" src="files/ajax.js"></script>
+        <style>
+            h1{
+                text-align: center;
+            }
+            body{
+                background-color: aquamarine;
+            }
+            #campDetails {
+                border: 1px solid black;
+                width: fit-content;
+                position: fixed;
+                left: 33%;
+                top: 33%;
+            }
+            table{
+                font-size: 20px !important;
+                line-height: 2 !important;
+            }
+            select, #campDate, #endNo, #startNo{
+                width:100% !important;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h1>WELCOME TO RSSB KPT-II, COVID-19 VACCINATION CAMP</h1>
+        <form name="campDetails" id = "campDetails"  method="POST">
+            <table>
+                <tr>
+                    <td><b>Select the Vaccine Name: </b></td>
+                    <td>
+                        <select name="vaccine_name" id="vaccine_name">
+                            <option value="0">Please Select</option>
+                            <option value="COVISHIELD">COVISHIELD</option>
+                            <option value="COVAXIN">COVAXIN</option>
+                            <option value="JANSSEN">JANSSEN</option>
+                            <option value="MODERNA">MODERNA</option>
+                            <option value="ZyCoV-D">ZyCoV-D</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Select Date of Camp: </b></td>
+                    <td><input type="date" id="campDate" name="campDate"></td>
+                </tr>
+                <tr>
+                    <td><b>Enter Starting Serial Number: </b></td>
+                    <td><input type="text" id="startNo" name="startNo"></td>
+                </tr>
+                <tr>
+                    <td><b>Enter Last Serial Number: </b></td>
+                    <td><input type="text" id="endNo" name="endNo"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center !important;"><input style='margin:1% !important;'type="button" value="Generate Registration Slips" onclick="validateForm(this)"></input><input type="button" value="Generate Tokens" onclick="validateForm(this)"></input></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
+<script>
+    // Use Javascript
+    window.onload = function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
+        var yyyy = today.getFullYear();
+        if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+        today = yyyy+'-'+mm+'-'+dd;
+        document.getElementById("campDate").setAttribute("min", today);
+        document.getElementById("campDate").value = today;
+    }
+</script>
