@@ -14,26 +14,33 @@
             #campDetails {
                 border: 1px solid black;
                 width: fit-content;
-                position: fixed;
-                left: 33%;
-                top: 33%;
             }
             table{
                 font-size: 20px !important;
                 line-height: 2 !important;
+                border-style: double;
             }
             select, #campDate, #endNo, #startNo{
                 width:100% !important;
+            }
+            .required{
+                color:red;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                margin-top: 10% !important;
             }
         </style>
 
     </head>
     <body>
         <h1>WELCOME TO RSSB KPT-II, COVID-19 VACCINATION CAMP</h1>
+        <div class="container">
         <form name="campDetails" id = "campDetails"  method="POST">
             <table>
                 <tr>
-                    <td><b>Select the Vaccine Name: </b></td>
+                    <td><b>Vaccine Name</b><span class='required'>*</span></td>
                     <td>
                         <select name="vaccine_name" id="vaccine_name">
                             <option value="0">Please Select</option>
@@ -47,15 +54,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Select Date of Camp: </b></td>
+                    <td><b>Date of Camp</b><span class='required'>*</span></td>
                     <td><input type="date" id="campDate" name="campDate"></td>
                 </tr>
                 <tr>
-                    <td><b>Enter Starting Serial Number: </b></td>
+                    <td><b>Starting Serial Number</b><span class='required'>*</span></td>
                     <td><input type="text" id="startNo" name="startNo"></td>
                 </tr>
                 <tr>
-                    <td><b>Enter Last Serial Number: </b></td>
+                    <td><b>Last Serial Number</b><span class='required'>*</span></td>
                     <td><input type="text" id="endNo" name="endNo"></td>
                 </tr>
                 <tr>
@@ -63,6 +70,8 @@
                 </tr>
             </table>
         </form>
+    </div>
+        <div style="text-align: center;"><span class="required">*</span><span>Required Fields</span></div>
     </body>
 </html>
 <script>

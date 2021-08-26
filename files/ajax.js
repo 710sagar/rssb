@@ -24,16 +24,17 @@ function validateForm(id) {
         alert("Please Enter Date");
         return false;
     }
-    else if (startNo == "") {
-        alert("Please Enter Starting Serial Number");
+    else if (startNo == "" || isNaN(startNo) || startNo <= 0 ) {
+        alert("Please Enter valid Starting Serial Number");
         return false;
     }
-    else if (endNo == "") {
-        alert("Please Enter Last Serial Number");
+    else if (endNo == "" ||isNaN(endNo) || endNo <= 0 ) {
+        alert("Please Enter valid Last Serial Number");
         return false;
     }
     else if (startNo > endNo){
-        alert("Starting serial no. cannot be greater than or equal to last serial no.")
+        alert("Starting serial no. cannot be greater than or equal to last serial no.");
+        return false;
     }
     else{
         ajaxCall(id.value);
