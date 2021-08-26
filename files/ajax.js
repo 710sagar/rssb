@@ -33,7 +33,7 @@ function validateForm(id) {
         return false;
     }
     else if (startNo > endNo){
-        alert("Starting serial no. cannot be less than or equal to last serial no.")
+        alert("Starting serial no. cannot be greater than or equal to last serial no.")
     }
     else{
         ajaxCall(id.value);
