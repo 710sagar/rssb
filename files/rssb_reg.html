@@ -27,7 +27,7 @@
                 width: auto;
             }
             td, th{
-                padding: 7px !important;
+                padding: 7px;
             }
             #mymaintable{
                 font-size: 19px;
@@ -220,20 +220,9 @@
             tr = document.createElement('tr');
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.innerHTML = 'Aadhar No.';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='4';
-            tr.appendChild(td);
-            table.appendChild(tr);
-
-
-            tr = document.createElement('tr');
-                td = document.createElement('td');
-                td.colSpan='1';
                 td.style.width='30%';
                 td.style.fontSize = '18px';
-                td.innerHTML = 'Passport No.';
+                td.innerHTML = 'ID Type';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
@@ -254,6 +243,16 @@
                 td.className = 'centerAlign';
                 td.style.width='8%';
                 td.innerHTML = 'II';
+            tr.appendChild(td);
+            table.appendChild(tr);
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.innerHTML = 'ID No.';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='4';
             tr.appendChild(td);
             table.appendChild(tr);
 
