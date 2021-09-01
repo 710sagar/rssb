@@ -19,7 +19,7 @@ function validateForm(id) {
     let endNo = document.forms["campDetails"]["endNo"].value;
     startNo = Number(startNo);
     endNo = Number(endNo);
-    if (vaccine_name == "0") {
+    if (vaccine_name === "") {
       alert("Please Select Vaccine Name");
       return false;
     }
