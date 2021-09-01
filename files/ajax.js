@@ -3,11 +3,12 @@ function ajaxCall(value){
     var campDate = document.getElementById('campDate').value;
     var startNo = document.getElementById('startNo').value;
     var endNo = document.getElementById('endNo').value;
+    var noDate = document.getElementById('noDate').checked;
     if(value == 'Generate Tokens'){
-        url = 'files/rssb_token.html?vaccineName=' + encodeURIComponent(vaccineName) + '&campDate=' + campDate + '&startNo=' + startNo + '&endNo=' + endNo;
+        url = 'files/rssb_token.html?vaccineName=' + encodeURIComponent(vaccineName) + '&campDate=' + campDate + '&startNo=' + startNo + '&endNo=' + endNo + '&noDate=' + noDate;
     }
     else if(value == 'Generate Registration Slips'){
-        url = 'files/rssb_reg.html?vaccineName=' + encodeURIComponent(vaccineName) + '&campDate=' + campDate + '&startNo=' + startNo + '&endNo=' + endNo;
+        url = 'files/rssb_reg.html?vaccineName=' + encodeURIComponent(vaccineName) + '&campDate=' + campDate + '&startNo=' + startNo + '&endNo=' + endNo + '&noDate=' + noDate;
     }
     document.location.href = url;
 }
@@ -16,11 +17,13 @@ function validateForm(id) {
     let campDate = document.forms["campDetails"]["campDate"].value;
     let startNo = document.forms["campDetails"]["startNo"].value;
     let endNo = document.forms["campDetails"]["endNo"].value;
+    startNo = Number(startNo);
+    endNo = Number(endNo);
     if (vaccine_name == "0") {
       alert("Please Select Vaccine Name");
       return false;
     }
-    else if (campDate == "") {
+    else if (campDate == "" ||  noDate == false) {
         alert("Please Enter Date");
         return false;
     }

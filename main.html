@@ -58,6 +58,10 @@
                     <td><input type="date" id="campDate" name="campDate"></td>
                 </tr>
                 <tr>
+                    <td><b>Without Date</b><span class='required'>*</span></td>
+                    <td><input type="checkbox" id="noDate" name="noDate" onclick="disableDate()"></td>
+                </tr>
+                <tr>
                     <td><b>Starting Serial Number</b><span class='required'>*</span></td>
                     <td><input type="text" id="startNo" name="startNo"></td>
                 </tr>
@@ -91,5 +95,14 @@
         today = yyyy+'-'+mm+'-'+dd;
         document.getElementById("campDate").setAttribute("min", today);
         document.getElementById("campDate").value = today;
+    }
+    function disableDate(){
+        var value = document.getElementById("noDate").checked;
+        if(value == true){
+            document.getElementById("campDate").disabled = true;
+        }
+        else{
+            document.getElementById("campDate").disabled = false;
+        }
     }
 </script>

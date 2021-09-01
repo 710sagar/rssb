@@ -30,7 +30,7 @@
                 padding: 7px;
             }
             #mymaintable{
-                font-size: 19px;
+                font-size: 17px;
                 /* border-spacing: 15px !important; */
                 /* border-collapse: separate !important;  */
                 /* text-align: center !important; */
@@ -74,6 +74,7 @@
         var end = '';
         var vaccine_name = '';
         var todayDate = '';
+        var noDate = '';
         var url = document.location.href;
         params = url.split('?')[1].split('&');   
         tmp = {};
@@ -86,6 +87,7 @@
         end += data['endNo'];
         end = Number(end);
         vaccine_name += data['vaccineName'];
+        noDate += data['noDate'];
         var date = data['campDate'];
         todayDate += getTodayDate(date);
         
@@ -189,7 +191,7 @@
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.fontSize = '23px';
+                td.style.fontSize = '21px';
                 td.style.fontWeight = 'bold';
                 td.innerHTML = int;
             tr.appendChild(td);
@@ -198,9 +200,12 @@
                 td.style.width='10%';
                 td.innerHTML = 'Date: ';
                     span = document.createElement('span');
-                    span.style.fontSize='20px';
+                    span.style.fontSize='18px';
                     span.style.fontWeight = 'bold';
                     //var todayDate = getTodayDate();
+                    if(noDate == 'true'){
+                        todayDate = "";
+                    }
                     span.innerHTML = todayDate;
                 td.appendChild(span);
             tr.appendChild(td);
@@ -221,7 +226,7 @@
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.style.width='30%';
-                td.style.fontSize = '18px';
+                td.style.fontSize = '16px';
                 td.innerHTML = 'ID Type';
             tr.appendChild(td);
                 td = document.createElement('td');
