@@ -19,7 +19,7 @@
                 margin-right:10px !important;
             }
             tr{
-                height: 43px !important;
+                height: 39px !important;
             }
             table, th,tr, td {
                 border: 1px solid black !important;
@@ -30,7 +30,7 @@
                 padding: 7px;
             }
             #mymaintable{
-                font-size: 17px;
+                font-size: 15px;
                 /* border-spacing: 15px !important; */
                 /* border-collapse: separate !important;  */
                 /* text-align: center !important; */
@@ -191,7 +191,7 @@
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.fontSize = '21px';
+                td.style.fontSize = '19px';
                 td.style.fontWeight = 'bold';
                 td.innerHTML = int;
             tr.appendChild(td);
@@ -200,7 +200,7 @@
                 td.style.width='10%';
                 td.innerHTML = 'Date: ';
                     span = document.createElement('span');
-                    span.style.fontSize='18px';
+                    span.style.fontSize='16px';
                     span.style.fontWeight = 'bold';
                     //var todayDate = getTodayDate();
                     if(noDate == 'true'){
@@ -225,29 +225,30 @@
             tr = document.createElement('tr');
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.style.width='30%';
-                td.style.fontSize = '16px';
+                td.style.width='26%';
+                td.style.fontSize = '14px';
                 td.innerHTML = 'ID Type';
-            tr.appendChild(td);
+                tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.style.width='31%';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.innerHTML = 'Dose';
+                td.style.width='12%';
+                td.innerHTML = 'Gender';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.width='8%';
-                td.innerHTML = 'I';
+                td.style.width='10%';
+                td.innerHTML = 'M';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.width='8%';
-                td.innerHTML = 'II';
+                td.style.width='10%';
+                td.innerHTML = 'F';
             tr.appendChild(td);
             table.appendChild(tr);
 
@@ -273,19 +274,10 @@
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.innerHTML = 'Gender';
+                td.innerHTML = 'Age';
             tr.appendChild(td);
                 td = document.createElement('td');
-                td.colSpan='1';
-                td.className = 'centerAlign';
-                td.style.width='8%';
-                td.innerHTML = 'M';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.className = 'centerAlign';
-                td.style.width='8%';
-                td.innerHTML = 'F';
+                td.colSpan='2';
             tr.appendChild(td);
             table.appendChild(tr);
 
@@ -297,6 +289,35 @@
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='4';
+            tr.appendChild(td);
+            table.appendChild(tr);
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='26%';
+                td.style.fontSize = '14px';
+                td.innerHTML = 'Registered By';
+                tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='31%';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.innerHTML = 'Dose';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.className = 'centerAlign';
+                td.style.width='10%';
+                td.innerHTML = 'I';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.className = 'centerAlign';
+                td.style.width='10%';
+                td.innerHTML = 'II';
             tr.appendChild(td);
             table.appendChild(tr);
 
