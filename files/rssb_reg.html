@@ -19,7 +19,7 @@
                 margin-right:10px !important;
             }
             tr{
-                height: 39px !important;
+                height: 35px !important;
             }
             table, th,tr, td {
                 border: 1px solid black !important;
@@ -30,7 +30,8 @@
                 padding: 7px;
             }
             #mymaintable{
-                font-size: 15px;
+                font-size: 13px;
+                font-weight: bold;
                 /* border-spacing: 15px !important; */
                 /* border-collapse: separate !important;  */
                 /* text-align: center !important; */
@@ -111,7 +112,7 @@
             var dd = dateArray[2];
             var mm = month[dateArray[1]-1];
             var yyyy = dateArray[0];
-            yyyy = yyyy.toString().substr(2,3);
+            //yyyy = yyyy.toString().substr(2,3);
             returnDate+= dd + ' ' + mm + ' ' + yyyy;
             return returnDate;
         }
@@ -191,7 +192,7 @@
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.fontSize = '19px';
+                td.style.fontSize = '17px';
                 td.style.fontWeight = 'bold';
                 td.innerHTML = int;
             tr.appendChild(td);
@@ -200,8 +201,9 @@
                 td.style.width='10%';
                 td.innerHTML = 'Date: ';
                     span = document.createElement('span');
-                    span.style.fontSize='16px';
+                    span.style.fontSize='14px';
                     span.style.fontWeight = 'bold';
+                    span.style.float = 'bold';
                     //var todayDate = getTodayDate();
                     if(noDate == 'true'){
                         todayDate = "";
@@ -225,30 +227,40 @@
             tr = document.createElement('tr');
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.style.width='26%';
-                td.style.fontSize = '14px';
-                td.innerHTML = 'ID Type';
-                tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.style.width='31%';
+                td.innerHTML = 'Birth Year';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.style.width='12%';
+                td.style.width='18%';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='17%';
                 td.innerHTML = 'Gender';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.width='10%';
+                td.style.width='11%';
                 td.innerHTML = 'M';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
                 td.className = 'centerAlign';
-                td.style.width='10%';
+                td.style.width='11%';
                 td.innerHTML = 'F';
+            tr.appendChild(td);
+            table.appendChild(tr);
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='23%';
+                td.style.fontSize = '12px';
+                td.innerHTML = 'ID Type';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='4';
             tr.appendChild(td);
             table.appendChild(tr);
 
@@ -262,46 +274,15 @@
             tr.appendChild(td);
             table.appendChild(tr);
 
-
-            tr = document.createElement('tr');
+            
+            tr = document.createElement('tr');    
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.innerHTML = 'Birth Year';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='1';
+                td.innerHTML = 'Age';
                 td.style.width='20%';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
-                td.innerHTML = 'Age';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='2';
-            tr.appendChild(td);
-            table.appendChild(tr);
-
-
-            tr = document.createElement('tr');
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.innerHTML = 'Mobile No.';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='4';
-            tr.appendChild(td);
-            table.appendChild(tr);
-
-            tr = document.createElement('tr');
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.style.width='26%';
-                td.style.fontSize = '14px';
-                td.innerHTML = 'Registered By';
-                tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.style.width='31%';
             tr.appendChild(td);
                 td = document.createElement('td');
                 td.colSpan='1';
@@ -319,6 +300,38 @@
                 td.style.width='10%';
                 td.innerHTML = 'II';
             tr.appendChild(td);
+            table.appendChild(tr);
+
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.innerHTML = 'Mobile No.';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='4';
+            tr.appendChild(td);
+            table.appendChild(tr);
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='23%';
+                td.style.fontSize = '12px';
+                td.innerHTML = 'Registered By';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='25%';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.fontSize = '11px';
+                td.innerHTML = 'Verified By';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='2';
+            tr.appendChild(td);    
             table.appendChild(tr);
 
            divColumn.appendChild(table);
