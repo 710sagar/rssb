@@ -203,7 +203,7 @@
                     span = document.createElement('span');
                     span.style.fontSize='14px';
                     span.style.fontWeight = 'bold';
-                    span.style.float = 'bold';
+                    span.style.float = 'right';
                     //var todayDate = getTodayDate();
                     if(noDate == 'true'){
                         todayDate = "";
@@ -252,29 +252,6 @@
             tr.appendChild(td);
             table.appendChild(tr);
 
-            tr = document.createElement('tr');
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.style.width='23%';
-                td.style.fontSize = '12px';
-                td.innerHTML = 'ID Type';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='4';
-            tr.appendChild(td);
-            table.appendChild(tr);
-
-            tr = document.createElement('tr');
-                td = document.createElement('td');
-                td.colSpan='1';
-                td.innerHTML = 'ID No.';
-            tr.appendChild(td);
-                td = document.createElement('td');
-                td.colSpan='4';
-            tr.appendChild(td);
-            table.appendChild(tr);
-
-            
             tr = document.createElement('tr');    
                 td = document.createElement('td');
                 td.colSpan='1';
@@ -301,6 +278,29 @@
                 td.innerHTML = 'II';
             tr.appendChild(td);
             table.appendChild(tr);
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.style.width='23%';
+                td.style.fontSize = '12px';
+                td.innerHTML = 'ID Type';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='4';
+            tr.appendChild(td);
+            table.appendChild(tr);
+
+            tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='1';
+                td.innerHTML = 'ID No.';
+            tr.appendChild(td);
+                td = document.createElement('td');
+                td.colSpan='4';
+            tr.appendChild(td);
+            table.appendChild(tr);
+
 
 
             tr = document.createElement('tr');
