@@ -1,0 +1,409 @@
+
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="../assets/bootstrap-3-3-4/dist/css/bootstrap.min.css?v=41" type="text/css">
+            <link rel="stylesheet" href="../assets/select2-4-0/dist/css/select2.css?v=41" type="text/css">
+            <link rel="stylesheet" href="../assets/select2-bootstrap-theme-0-1-0/dist/select2-bootstrap.css?v=41" type="text/css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script language="javascript" type="text/javascript" src="ajax.js"></script>
+        
+            <style>
+                table{
+                    background-color:none !important;
+                    margin-top:10px !important;
+                    margin-left:5px !important;
+                    margin-right:10px !important;
+                }
+                tr{
+                    height: 35px !important;
+                }
+                table, th,tr, td {
+                    border: 1px solid black !important;
+                    /* height: fit-content !important; */
+                    width: auto;
+                }
+                td, th{
+                    padding: 7px;
+                }
+                #mymaintable{
+                    font-size: 13px;
+                    font-weight: bold;
+                    /* border-spacing: 15px !important; */
+                    /* border-collapse: separate !important;  */
+                    /* text-align: center !important; */
+                    font-family:Times New Roman !important;
+                    width: 96% !important;
+                }
+                .row {
+                    display: flex !important;
+                    margin-left:-5px;
+                    margin-right:-5px;
+                }
+                .column {
+                    flex: 50% !important;
+                    padding: 5px;
+                    
+                }
+                .centerAlign{
+                    text-align: center !important;
+                }
+                @media print {
+                    #printPageButton, #backForm {
+                        display: none;
+                    }
+                }
+                #backForm{
+                    text-align: center;
+                    margin: 5%;
+                }
+                .columnGender {
+                    float: left;
+                    width: 50%;
+                    padding: 3px;
+                }
+                .rowGender:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+            </style>
+        </head>
+        <body>
+            <form action="../main.html" id = 'backForm'>
+                <input type="submit" value="Back" id='printPageButton' />
+            </form>
+        
+        </body>
+        </html>
+        <script>
+            data = {};
+            var start = '';
+            var end = '';
+            var vaccine_name = '';
+            var todayDate = '';
+            var noDate = '';
+            var url = document.location.href;
+            params = url.split('?')[1].split('&');   
+            tmp = {};
+            for (var i = 0, l = params.length; i < l; i++) {
+                tmp = params[i].split('=');
+                data[tmp[0]] = tmp[1];
+            }
+            start += data['startNo'];
+            start = Number(start);
+            end += data['endNo'];
+            end = Number(end);
+            var pageCount = 0;
+            if(end%6 == 0){
+                pageCount = parseInt(end/6);
+            }
+            else{
+                pageCount += parseInt((end/6)+1);
+            }
+            var srno = 0;
+            var startCount = 0;
+            vaccine_name += data['vaccineName'];
+            noDate += data['noDate'];
+            var date = data['campDate'];
+            todayDate += getTodayDate(date);
+            
+            function getTodayDate(value){
+                var month = new Array();
+                var returnDate = '';
+                month[0] = "Jan";
+                month[1] = "Feb";
+                month[2] = "Mar";
+                month[3] = "Apr";
+                month[4] = "May";
+                month[5] = "Jun";
+                month[6] = "Jul";
+                month[7] = "Aug";
+                month[8] = "Sep";
+                month[9] = "Oct";
+                month[10] = "Nov";
+                month[11] = "Dec";
+                var today = value;
+                var dateArray = today.split('-');
+                var dd = dateArray[2];
+                var mm = month[dateArray[1]-1];
+                var yyyy = dateArray[0];
+                //yyyy = yyyy.toString().substr(2,3);
+                returnDate+= dd + ' ' + mm + ' ' + yyyy;
+                return returnDate;
+            }
+            
+            function pad(num, size) {
+                num = num.toString();
+                while (num.length < size) num = "0" + num;
+                return num;
+            }
+            // function getTodayDate(){
+            //     var month = new Array();
+            //     var returnDate = '';
+            //     month[0] = "Jan";
+            //     month[1] = "Feb";
+            //     month[2] = "Mar";
+            //     month[3] = "Apr";
+            //     month[4] = "May";
+            //     month[5] = "Jun";
+            //     month[6] = "July";
+            //     month[7] = "Aug";
+            //     month[8] = "Sept";
+            //     month[9] = "Oct";
+            //     month[10] = "Nov";
+            //     month[11] = "Dec";
+            //     var today = new Date();
+            //     var dd = String(today.getDate()).padStart(2, '0');
+            //     var mm = month[today.getMonth()];
+            //     var yyyy = today.getFullYear();
+            //     yyyy = yyyy.toString().substr(2,3);
+            //     returnDate+= dd + ' ' + mm + ' ' + yyyy;
+            //     return returnDate;
+            // }
+            
+            let text = "";
+            var i=0;
+            startCount = start;
+            var pageCounter = 0;
+        for (var int = start;int<=end,startCount<=end;){
+            var divRow = document.createElement('div');
+            divRow.className = 'row';             
+            for (var j=0; j<2; j++){  
+                if(end%2==0){
+                    if(startCount>end){
+                        break;
+                    }
+                }
+                else{
+                    if(startCount > (end+1)){
+                        break;
+                    }
+                }
+                srno = startCount;             
+                var srno = pad(srno,3);                
+                var divColumn = document.createElement('div');
+                divColumn.className = 'column';
+                if(j == 0){
+                    divColumn.style.marginLeft = '12px';
+                    divColumn.style.paddingRight = '0px';
+                }
+                else if(j == 1){
+                    divColumn.style.paddingLeft = '0px';
+                }
+                var table = document.createElement('table');
+                table.id='mymaintable';
+                tr = document.createElement('tr');
+                td = document.createElement('td');
+                td.colSpan='6';
+                td.className = 'centerAlign';
+                td.innerHTML = 'COVID-19 VACCINATION RSSB, KPT-II';
+                tr.appendChild(td);
+                table.appendChild(tr);
+            
+            
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='6';
+                    td.className = 'centerAlign';
+                    td.innerHTML = 'BENEFICIARY DETAILS <b> (' + vaccine_name +')</b>';
+                tr.appendChild(td);
+                table.appendChild(tr);
+            
+            
+            
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'Sr No.';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.className = 'centerAlign';
+                    td.style.fontSize = '17px';
+                    td.style.fontWeight = 'bold';
+                    td.innerHTML = srno;
+                    startCount = startCount+pageCount;
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='4';
+                    td.style.width='10%';
+                    td.innerHTML = 'Date: ';
+                        span = document.createElement('span');
+                        span.style.fontSize='14px';
+                        span.style.fontWeight = 'bold';
+                        span.style.float = 'right';
+                        //var todayDate = getTodayDate();
+                        if(noDate == 'true'){
+                            todayDate = "";
+                        }
+                        span.innerHTML = todayDate;
+                    td.appendChild(span);
+                tr.appendChild(td);
+                table.appendChild(tr);
+
+
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'Name';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='5';
+                tr.appendChild(td);
+                table.appendChild(tr);
+
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'Birth Year';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.style.width='18%';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'Age';
+                    td.style.width='17%';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='3';
+                tr.appendChild(td);
+                    
+                table.appendChild(tr);
+
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.style.width='23%';
+                    td.style.fontSize = '12px';
+                    td.innerHTML = 'ID Type';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='5';
+                tr.appendChild(td);
+                table.appendChild(tr);
+
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'ID No.';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='5';
+                tr.appendChild(td);
+                table.appendChild(tr);
+
+                
+                tr = document.createElement('tr');  
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.style.width='17%';
+                    td.innerHTML = 'Gender';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.className = 'centerAlign';
+                    td.style.width='11%';
+                    td.style.padding='0px';
+                        divRowGender = document.createElement('div');
+                        divRowGender.className = 'rowGender';
+                            divColumnGender = document.createElement('div');
+                            divColumnGender.className = 'columnGender';
+                            divColumnGender.style.borderRight = '1px solid black';
+                                span = document.createElement('span');
+                                span.innerHTML = "M";
+                            divColumnGender.appendChild(span);
+                        divRowGender.appendChild(divColumnGender);
+                            divColumnGender = document.createElement('div');
+                            divColumnGender.className = 'columnGender';
+                                span = document.createElement('span');
+                                span.innerHTML = "F";
+                            divColumnGender.appendChild(span);
+                        divRowGender.appendChild(divColumnGender);    
+                    td.appendChild(divRowGender);
+                tr.appendChild(td);
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'Dose';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.className = 'centerAlign';
+                    td.style.width='10%';
+                    td.innerHTML = 'I';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.className = 'centerAlign';
+                    td.style.width='10%';
+                    td.innerHTML = 'II';
+                tr.appendChild(td);
+                table.appendChild(tr);
+
+
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.innerHTML = 'Mobile No.';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='5';
+                tr.appendChild(td);
+                table.appendChild(tr);
+
+                tr = document.createElement('tr');
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.style.width='23%';
+                    td.style.fontSize = '12px';
+                    td.innerHTML = 'Registered By';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.style.width='25%';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='1';
+                    td.style.fontSize = '12px';
+                    td.innerHTML = 'Verified By';
+                tr.appendChild(td);
+                    td = document.createElement('td');
+                    td.colSpan='3';
+                tr.appendChild(td);    
+                table.appendChild(tr);
+
+            divColumn.appendChild(table);
+            divRow.appendChild(divColumn);
+        }
+            i++;
+            document.body.appendChild(divRow);
+            if(i == 3){
+                var p = document.createElement('p');
+                p.style.pageBreakAfter = "always";
+                //divRow.appendChild(p);
+                document.body.appendChild(p);
+                i = 0;
+                int++;
+                startCount = int;
+                pageCounter++;
+            }
+            if(pageCounter == pageCount){
+                break;
+            }
+            
+        }
+        </script>
+        <script type="text/javascript">
+            window.onload = function () {
+                window.print();
+                setTimeout(function(){
+                    window.close();
+                }, 0);
+            }
+        </script> 
